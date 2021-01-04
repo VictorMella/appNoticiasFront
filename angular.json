@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "appNoticiasFront"
+  "defaultProject": "appNoticiasFront",
+  "cli": {
+    "analytics": false
+  }
 }
