@@ -1,7 +1,8 @@
 <div class="container fixed-top colorBody1">
   <nav class="navbar navbar-expand-lg navbar-light colorNavbar2 mt-1">
     <a class="navbar-brand ml-3">
-      <img src="../../../assets/img/ojo.png" width="40" height="40" loading="lazy">
+      <img *ngIf="ojo" (click)="accion1()" src="../../../assets/img/ojo.png" width="40" height="40" loading="lazy">
+      <img *ngIf="!ojo" (click)="accion2()" src="../../../assets/img/ojo.png" width="40" height="40" loading="lazy">
     </a>
     <a class="navbar-brand ml-3 colorName4"><strong class="text-uppercase font--20">
         App Noticias
@@ -15,22 +16,33 @@
     <div class="container text-justify ml-5 mr-4">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item " routerLinkActive="active">
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/inicio']">Portada </a>
           </li>
-          <li class="nav-item " routerLinkActive="active">
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/noticias']">Noticias </a>
           </li>
-          <li class="nav-item " routerLinkActive="active">
-            <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/noticiaCompleta']">Noticia completa </a>
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
+            <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/noticiaCompleta']">Noticia completa
+            </a>
           </li>
-          <li class="nav-item " routerLinkActive="active">
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/mensajes']">Mensajes </a>
           </li>
-          <li class="nav-item " routerLinkActive="active">
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/ajustes']">Ajustes </a>
           </li>
         </ul>
+
+        <i *ngIf="login1" (click)="entrar()" data-toggle="tooltip" data-placement="left" title="Admin login"
+          class="fas fa-sign-in-alt mr-5 fa-lg colorNegro16 cursor7"></i>
+
+        <div (keyup.enter)="inputLogin()" *ngIf="input1" class="input-group-sm mr-4 ml-5">
+          <input type="password" id="focusClave" [(ngModel)]="pass" name="pass" placeholder="Press enter"
+            class="form-control backInput15" aria-describedby="inputGroup-sizzing-sm">
+
+        </div>
+
         <div class="row">
           <div class="col text-center">
             <p class="m-2">
