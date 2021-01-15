@@ -45,13 +45,7 @@ export class ModalsComponent implements OnInit {
         toast: true,
         position: 'center',
         showConfirmButton: false,
-
         timer: 3000,
-        // timerProgressBar: true,
-        // didOpen: (toast) => {
-        //   toast.addEventListener('mouseenter', Swal.stopTimer)
-        //   toast.addEventListener('mouseleave', Swal.resumeTimer)
-        // }
       });
 
       Toast.fire({
@@ -67,13 +61,7 @@ export class ModalsComponent implements OnInit {
         toast: true,
         position: 'center',
         showConfirmButton: false,
-
         timer: 3000,
-        // timerProgressBar: true,
-        // didOpen: (toast) => {
-        //   toast.addEventListener('mouseenter', Swal.stopTimer)
-        //   toast.addEventListener('mouseleave', Swal.resumeTimer)
-        // }
       });
 
       Toast.fire({
@@ -95,6 +83,7 @@ export class ModalsComponent implements OnInit {
       this.usuarioLogin.password === '1234'
     ) {
       this.salirLogin();
+      this.limpiarUsuario();
       setTimeout(() => {
         $('.navbar-collapse').collapse('hide');
       }, 500);
@@ -120,16 +109,24 @@ export class ModalsComponent implements OnInit {
       });
 
       Toast.fire({
-        title: `${this.usuarioLogin.nombre}, tu usuario o password son incorrectos`,
+        title: `${this.usuarioLogin.nombre}, tu usuario o password es incorrectos`,
         background: 'rgb(233,233,0)',
         icon: 'error',
       });
       this.salirLogin();
+      this.limpiarUsuario();
       $('.navbar-collapse').collapse('hide');
     }
+    this.limpiarUsuario();
   }
 
   salirLogin() {
     $('#loginModal').modal('hide');
   }
+
+  limpiarUsuario() {
+    this.usuarioLogin.nombre = '';
+    this.usuarioLogin.password = '';
+  }
+
 }
