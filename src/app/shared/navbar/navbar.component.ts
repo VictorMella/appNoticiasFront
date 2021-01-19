@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
+import Swal from 'sweetalert2';
 
 declare let $: any;
 
@@ -15,12 +17,16 @@ export class NavbarComponent implements OnInit {
   input1: boolean;
   pass = '';
 
-  constructor() {}
+  constructor(public modalService: ModalService) {
+    this.modalService.ojo2 = true;
+  }
 
   ngOnInit(): void {}
 
   cerrarNav() {
     $('.navbar-collapse').collapse('hide');
+    this.login1 = false;
+    this.input1 = false;
   }
 
   alerta() {
@@ -52,6 +58,7 @@ export class NavbarComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip();
     });
     this.login1 = true;
+    this.modalService.ojo2 = false;
   }
 
   inputLogin() {
@@ -73,4 +80,21 @@ export class NavbarComponent implements OnInit {
       });
     }
   }
+
+ logOut(){
+   this.cerrarNav();
+   this.modalService.logOut();
+   const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 3000,
+  });
+
+   Toast.fire({
+    title: `Estas offline`,
+    background: 'rgb(233,233,0)',
+    icon: 'success',
+  });
+ }
 }

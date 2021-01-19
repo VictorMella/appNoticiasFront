@@ -11,14 +11,14 @@ import Swal from 'sweetalert2'
   ]
 })
 export class FooterComponent implements OnInit {
-anio = null
+anio = null;
 constructor(public modalService: ModalService) {
   this.modalService.privacidad = true;
 }
 
 
   ngOnInit(): void {
-    this.getYear()
+    this.getYear();
   }
 
   whatsApp(){
@@ -26,26 +26,19 @@ constructor(public modalService: ModalService) {
       toast: true,
       position: 'center',
       showConfirmButton: true,
-      customClass:{
-        confirmButton:'back9'
+      customClass: {
+        confirmButton: 'back9'
       }
-      // timer: 3000,
-      // timerProgressBar: true,
-      // didOpen: (toast) => {
-      //   toast.addEventListener('mouseenter', Swal.stopTimer)
-      //   toast.addEventListener('mouseleave', Swal.resumeTimer)
-      // }
-    })
-    
-    Toast.fire({   
+     })
+    Toast.fire({
       title: '+5694569138',
-      background:'rgb(233,233,0)'
+      background: 'rgb(233,233,0)'
     })
 
   }
   salir(){
     setTimeout(() => {
-      $('#privacidad').modal('hide')
+      $('#privacidad').modal('hide');
     }, 300);
   }
 
@@ -55,8 +48,8 @@ constructor(public modalService: ModalService) {
   }
 
   getYear(){
-    const year = new Date()
-    this.anio = moment(year).format('YYYY')
+    const year = new Date();
+    this.anio = moment(year).format('YYYY');
   }
 
   irAlerta() {

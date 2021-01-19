@@ -7,6 +7,8 @@ declare let $: any;
 export class ModalService {
   privacidad: boolean;
   privacidadSeleccionada: boolean;
+  online: boolean;
+  ojo2: boolean;
 
   constructor() {}
 
@@ -38,6 +40,11 @@ export class ModalService {
         $('#focusInput').trigger('focus');
       });
     });
-    
+
+  }
+
+  logOut(){
+    this.online = false;
+    this.ojo2 = true;
   }
 }

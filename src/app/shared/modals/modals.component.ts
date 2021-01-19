@@ -84,6 +84,7 @@ export class ModalsComponent implements OnInit {
     ) {
       this.salirLogin();
       this.limpiarUsuario();
+      this.modalService.online = true;
       setTimeout(() => {
         $('.navbar-collapse').collapse('hide');
       }, 500);
@@ -115,9 +116,10 @@ export class ModalsComponent implements OnInit {
       });
       this.salirLogin();
       this.limpiarUsuario();
+      this.refreshLogin()
       $('.navbar-collapse').collapse('hide');
     }
-    this.limpiarUsuario();
+
   }
 
   salirLogin() {
@@ -127,6 +129,13 @@ export class ModalsComponent implements OnInit {
   limpiarUsuario() {
     this.usuarioLogin.nombre = '';
     this.usuarioLogin.password = '';
+  }
+
+  refreshLogin(){
+    setTimeout(() => {
+      this.modalService.online = false;
+      this.modalService.ojo2 = true;
+    }, 50000);
   }
 
 }

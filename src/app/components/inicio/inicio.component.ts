@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class InicioComponent implements OnInit {
-
+  mostrarYo: boolean;
   constructor() { }
 
   ngOnInit(): void {
