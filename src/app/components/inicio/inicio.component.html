@@ -10,9 +10,9 @@
           <div class="card backSobreMi19">
             <div class="row no-gutters">
               <div class="col-md-4 backYo21 mt-1">
-                <img *ngIf="mostrarYo" src="../../../assets/img/vm.jpg"
+                <img (click)="yoMostrar()" *ngIf="mostrarYo" src="../../../assets/img/vm.jpg"
                   class=" card-img cursor7 padin20">
-                <img *ngIf="!mostrarYo" src="../../../assets/img/vm.jpg"
+                <img (click)="yoMostrar()" *ngIf="!mostrarYo" src="../../../assets/img/vm.jpg"
                   class="card-img cursor7 padin20">
               </div>
 
@@ -28,19 +28,19 @@
                       <span class="badge badge-warning text-uppercase">tecnologías destacadas</span>
                     </p>
                     <div class="row">
-                      <div class="col">
+                      <div class="col" (click)="tecnologias(1)">
                         <img src="../../../assets/img/angular.png" class="tamanoTec24">
                         <h6 class="mt-0 mb-1"><small class="colorTec25 text-uppercase">
                             <strong>Angular</strong>
                           </small></h6>
                       </div>
-                      <div class="col">
+                      <div class="col" (click)="tecnologias(2)">
                         <img src="../../../assets/img/node.png" class="tamanoTec24">
                         <h6 class="mt-0 mb-1"><small class="colorTec25 text-uppercase">
                             <strong>NodeJs</strong>
                           </small></h6>
                       </div>
-                      <div class="col">
+                      <div class="col" (click)="tecnologias(3)">
                         <img src="../../../assets/img/boot.png" class="tamanoTec24">
                         <h6 class="mt-0 mb-1"><small class="colorTec25 text-uppercase">
                             <strong>Bootstrap</strong>
@@ -55,9 +55,9 @@
               </div>
 
               <div class="col-md-4 backYo21 mt-1">
-                <img *ngIf="mostrarYo" src="../../../assets/img/vm.jpg"
+                <img (click)="yoMostrar()" *ngIf="mostrarYo" src="../../../assets/img/vm.jpg"
                   class="card-img cursor7 padin20">
-                <img *ngIf="!mostrarYo" src="../../../assets/img/vm.jpg"
+                <img (click)="yoMostrar()" *ngIf="!mostrarYo" src="../../../assets/img/vm.jpg"
                   class="card-img cursor7 padin20">
 
               </div>
@@ -67,3 +67,5 @@
       </div>
     </div>
   </div>
+
+  <app-modals></app-modals>
