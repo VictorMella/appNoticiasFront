@@ -20,7 +20,7 @@ export class ModalsComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  cerrarTect(){
+  cerrarTec(){
     $('#modalTecnologias').modal('hide');
     setTimeout(() => {
       this.modalService.pagina(1);
@@ -30,6 +30,10 @@ export class ModalsComponent implements OnInit {
   verPagina(pagina: number){
     this.modalService.pagina(pagina);
 
+  }
+
+  cerrarSobreMi(){
+    this.modalService.cerrarSobreMi();
   }
 
 

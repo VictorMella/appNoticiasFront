@@ -87,4 +87,10 @@ export class ModalService {
       this.clase3 = 'btn-warning';
     }
   }
+
+
+  cerrarSobreMi(){
+    $('#sobreMi').modal('hide');
+  }
+
 }
