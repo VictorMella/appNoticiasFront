@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NoticiaCompletaGuard } from './guards/noticia-completa.guard'
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       import('./components/noticia-completa/noticia-completa.module').then(
         m => m.NoticiaCompletaModule
       ),
+      canActivate: [NoticiaCompletaGuard]
   },
   {
     path: 'mensajes',
