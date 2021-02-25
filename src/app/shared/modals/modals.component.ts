@@ -82,6 +82,7 @@ export class ModalsComponent implements OnInit {
       this.usuarioLogin.nombre === 'victor' &&
       this.usuarioLogin.password === '1234'
     ) {
+      sessionStorage.setItem('usuario', this.usuarioLogin.nombre)
       this.salirLogin();
       this.limpiarUsuario();
       this.modalService.online = true;

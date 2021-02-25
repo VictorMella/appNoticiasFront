@@ -10,7 +10,7 @@
 
         <h5 class="card-title backNoticiaCompleta42">Lorem ipsum dolor sit amet consectetur adipisicing elit</h5>
 
-        <img [src]="noticiaService.noticiaSeleccionada.img" class="card-img img-fluid">
+        <img [src]="noticia.imgNoticia | imagenNoticia" class="card-img img-fluid">
 
         <div class="card-body text-justify">
 
@@ -40,10 +40,10 @@
         </div>
         <div class="container text-center backPaginaNoticiaCompleta43">
           <p class="card-text"><span class="backPlus37">
-              <img src="./assets/img/vm.jpg" class="tamanoYo29 backImgNoti30 rounded-circle mr-2">
+              <img [src]="noticia.imgAutor | imagenAutor" class="tamanoYo29 backImgNoti30 rounded-circle mr-2">
             </span>
             <span class="mr-2">
-              <u>Victor Mella Quilodran</u>
+              <u>{{noticia.autor}}</u>
             </span>
             <span>
               <small class="colorTexto40">15/10/2020</small>

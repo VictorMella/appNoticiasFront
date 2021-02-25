@@ -212,6 +212,7 @@ color: #00acee;
 
 .backYo21 {
   border: 5px solid rgba(0, 0, 0, 0);
+  text-align: center;
 }
 
 .backTitulo22 {
@@ -366,4 +367,12 @@ color: #00acee;
   border-radius: 2px;
   padding: 15px;
 }
+
+/* .card-img,
+.card-img-top,
+.card-img-bottom {
+  flex-shrink: 0;
+  width: 60%;
+} */
+
 

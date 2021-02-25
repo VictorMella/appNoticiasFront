@@ -21,57 +21,27 @@
             </label>
           </div>
 
-          <div *ngIf="modalService.mostrar1" class="container colorTexto10">
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-angular fa-lg mr-3"></i>
-              <span class="mr-2">Angular 1:</span>
-              <small>Cuatro años de experiencia profesional 1.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-bootstrap fa-lg mr-3"></i>
-              <span class="mr-2">Bootstrap 1:</span>
-              <small>Cuatro años de experiencia profesional 1.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-node-js fa-lg mr-3"></i>
-              <span class="mr-2">NodeJs 1:</span>
-              <small>Cuatro años de experiencia profesional 1.</small>
+          <div *ngIf="modalService.mostrar1" class="container colorTexto10" >
+            <p class="font-weight-light text-justify" *ngFor="let tab1 of tecTab1">
+              <i [class]="tab1.icono"></i>
+              <span class="mr-2">{{tab1.tecnologia}}:</span>
+              <small>{{tab1.experiancia}}</small>
             </p>
           </div>
 
           <div *ngIf="modalService.mostrar2" class="container colorTexto10">
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-angular fa-lg mr-3"></i>
-              <span class="mr-2">Angular 2:</span>
-              <small>Cuatro años de experiencia profesional 2.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-bootstrap fa-lg mr-3"></i>
-              <span class="mr-2">Bootstrap 2:</span>
-              <small>Cuatro años de experiencia profesional 2.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-node-js fa-lg mr-3"></i>
-              <span class="mr-2">NodeJs 2:</span>
-              <small>Cuatro años de experiencia profesional 2.</small>
+            <p class="font-weight-light text-justify" *ngFor="let tab1 of tecTab2">
+              <i [class]="tab1.icono"></i>
+              <span class="mr-2">{{tab1.tecnologia}}:</span>
+              <small>{{tab1.experiancia}}</small>
             </p>
           </div>
 
           <div *ngIf="modalService.mostrar3" class="container colorTexto10">
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-angular fa-lg mr-3"></i>
-              <span class="mr-2">Angular 3:</span>
-              <small>Cuatro años de experiencia profesional 3.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-bootstrap fa-lg mr-3"></i>
-              <span class="mr-2">Bootstrap 3:</span>
-              <small>Cuatro años de experiencia profesional 3.</small>
-            </p>
-            <p class="font-weight-light text-justify">
-              <i class="fab fa-node-js fa-lg mr-3"></i>
-              <span class="mr-2">NodeJs 3:</span>
-              <small>Cuatro años de experiencia profesional 3.</small>
+            <p class="font-weight-light text-justify" *ngFor="let tab1 of tecTab3">
+              <i [class]="tab1.icono"></i>
+              <span class="mr-2">{{tab1.tecnologia}}:</span>
+              <small>{{tab1.experiancia}}</small>
             </p>
           </div>
           <hr> <button (click)="cerrarTec()" type="button"
@@ -88,29 +58,23 @@
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content colorModal11">
-      <div class="container backModal12">
+      <div class="container backModal12" *ngIf="sobreMi">
         <div class="modal-body text-center colorName3">
-          <h2> <u class="text-capitalize">victor mella quilodran</u></h2><br>
-          <p class="font-weight-light text-justify colorTexto10 tab27">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
-            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
-            dolorum, accusantium mollitia dicta exercitationem corrupti.
+          <h2> <u class="text-capitalize">{{sobreMi.titulo}}</u></h2><br>
+          <p class="font-weight-light text-justify colorTexto10 tab27" >
+            {{sobreMi.texto1}}
           </p>
           <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
-            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
-            dolorum, accusantium mollitia dicta exercitationem corrupti.
+            {{sobreMi.texto2}}
           </p>
           <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
-            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
-            dolorum, accusantium mollitia dicta exercitationem corrupti.
+            {{sobreMi.texto3}}
           </p>
           <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
-
+            {{sobreMi.texto4}}
           </p>
           <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
-
+            {{sobreMi.texto5}}
           </p>
           <hr>
           <button (click)="cerrarSobreMi()" type="button"
