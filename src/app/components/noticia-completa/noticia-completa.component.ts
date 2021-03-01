@@ -18,8 +18,6 @@ export class NoticiaCompletaComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.noticia = this.noticiaService.noticiaSeleccionada;
-    // this.fechaNoticia = moment(this.noticia.created).format('DD-MM-YYYY');
-    console.log(this.noticia)
   }
 
   back(){

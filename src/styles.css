@@ -311,6 +311,10 @@ color: #00acee;
   padding: 10px !important;
 }
 
+.min-heigth-card{
+  min-height: 285px;
+}
+
 .backNoticias35:hover {
   background-image: url('./assets/img/fondo3.jpg');
   border: 5px solid rgb(255, 255, 0);
@@ -368,11 +372,7 @@ color: #00acee;
   padding: 15px;
 }
 
-/* .card-img,
-.card-img-top,
-.card-img-bottom {
-  flex-shrink: 0;
-  width: 60%;
-} */
-
+button[disabled]{
+  cursor: not-allowed
+}
 

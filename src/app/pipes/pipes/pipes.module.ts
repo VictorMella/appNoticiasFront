@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImagenAutorPipe } from '../imagen-autor.pipe'
-import { ImagenNoticiaPipe } from '../imagen-noticia-pipe'
+import { ImagenNoticiaPipe } from '../imagen-noticia.pipe'
+import { FechaNoticiaPipe } from '../fecha-noticia.pipe'
 
 @NgModule({
   declarations: [
     ImagenAutorPipe,
-    ImagenNoticiaPipe
+    ImagenNoticiaPipe,
+    FechaNoticiaPipe
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { ImagenNoticiaPipe } from '../imagen-noticia-pipe'
   ],
   exports: [
     ImagenAutorPipe,
-    ImagenNoticiaPipe
+    ImagenNoticiaPipe,
+    FechaNoticiaPipe
   ]
 })
 export class PipesModule { }

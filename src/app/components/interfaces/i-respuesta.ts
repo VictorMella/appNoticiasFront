@@ -5,4 +5,6 @@ export interface IRespuesta {
   pagina: number
   cantidadRegistros: number
   noticias: INoticia[]
+  totalRegistros: number
+  registrosPorPagina: number
 }
