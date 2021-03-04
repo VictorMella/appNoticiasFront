@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MensajesService } from 'src/app/services/mensajes.service'
 import { ModalService } from 'src/app/services/modal.service';
+import { UsuarioService } from 'src/app/services/usuario.service'
 import Swal from 'sweetalert2';
 
 declare let $: any;
@@ -15,13 +17,17 @@ export class NavbarComponent implements OnInit {
   ojo = true;
   login1: boolean;
   input1: boolean;
-  pass = '';
+  pass = '60356c4017aa164c0c6a8b44';
+  totalMenajes: number;
 
-  constructor(public modalService: ModalService) {
+  constructor(public modalService: ModalService,
+              public mensajeService: MensajesService,
+              private usuarioService: UsuarioService) {
     this.modalService.ojo2 = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   cerrarNav() {
     $('.navbar-collapse').collapse('hide');
@@ -62,15 +68,15 @@ export class NavbarComponent implements OnInit {
   }
 
   inputLogin() {
-    if (this.pass !== '1234') {
+    if (this.pass !== this.usuarioService.pass) {
       this.login1 = false;
       this.input1 = false;
-      this.pass = '';
+      // this.pass = '';
       this.cerrarNav();
     } else {
       this.login1 = false;
       this.input1 = false;
-      this.pass = '';
+      // this.pass = '';
       this.cerrarNav();
       $('#loginModal').modal();
       $(document).ready(() => {
@@ -82,6 +88,7 @@ export class NavbarComponent implements OnInit {
   }
 
  logOut(){
+   this.usuarioService.logOut()
    this.cerrarNav();
    this.modalService.logOut();
    const Toast = Swal.mixin({

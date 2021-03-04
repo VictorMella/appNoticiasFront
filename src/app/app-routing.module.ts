@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { LoginGuard } from './guards/login.guard'
 import { NoticiaCompletaGuard } from './guards/noticia-completa.guard'
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
       import('./components/noticia-completa/noticia-completa.module').then(
         m => m.NoticiaCompletaModule
       ),
-      canActivate: [NoticiaCompletaGuard]
+    canActivate: [NoticiaCompletaGuard]
   },
   {
     path: 'mensajes',
@@ -29,6 +30,7 @@ const routes: Routes = [
       import('./components/mensajes/mensajes.module').then(
         m => m.MensajesModule
       ),
+      canActivate: [LoginGuard]
   },
   {
     path: 'ajustes',
@@ -36,13 +38,14 @@ const routes: Routes = [
       import('./components/ajustes/ajustes.module').then(
         m => m.AjustesModule
       ),
+      canActivate: [LoginGuard]
   },
-{ path: '', pathMatch: 'full', redirectTo: 'inicio' },
-{ path: '**', pathMatch: 'full', redirectTo: 'inicio' },
-];
+  { path: '', pathMatch: 'full', redirectTo: 'inicio' },
+  { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

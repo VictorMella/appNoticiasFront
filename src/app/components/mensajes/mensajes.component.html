@@ -3,7 +3,7 @@
     <span class="badge badge-warning">Mensajes</span>
   </h3>
 
-  <div class="container text-center mt-3" *ngFor="let mensaje of mensajesEmail; let i = index; let suma = count" >
+  <div class="container text-center mt-3" *ngFor="let mensaje of mensajesEmail; let i = index" >
     <ul class="list-unstyled backUltimas28 pt-4 pl-4 pr-4 mt-1 text-justify" >
 
       <li class="text-left">
@@ -26,7 +26,7 @@
            {{mensaje.mensaje}}
           </span>
           <div class="text-center">
-            <span class="badge badge-warning mr-3">{{i+1}}/{{suma}}</span>
+            <span class="badge badge-warning mr-3">{{i+1}}/{{totalMenajes}}</span>
           </div>
         </div>
       </li>

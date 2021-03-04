@@ -1,35 +1,76 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
-import { of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { of } from 'rxjs'
+import { tap } from 'rxjs/operators'
 import { IRespuestaMensaje } from '../components/interfaces/i-respuesta-mensajes'
 import { IMensaje } from '../components/interfaces/i-mensajes'
+import { Router } from '@angular/router'
 
-const URL = environment.url;
+const URL = environment.url
 @Injectable({
   providedIn: 'root'
 })
 export class MensajesService {
 
- mensajes: IRespuestaMensaje;
-  constructor(private http: HttpClient) { }
-
-
-  getTecnologia(){
-    return this.http.get(`${URL}/contacto`)
-    // if (this.mensajes) {
-    //   return of(this.mensajes);
-    // } else {
-    //   return this.http
-    //     .get(`${URL}/contacto`)
-    //     .pipe(tap((resp: IRespuestaMensaje) => {
-    //       (this.mensajes = resp);
-    //     }));
-    // }
+  mensajes: IRespuestaMensaje
+  totalRegistros: number
+  constructor(private http: HttpClient,
+    private router: Router) {
+    this.getContactosTotal()
   }
 
-  deleteMensaje(_id: IMensaje){
-     return this.http.delete(`${URL}/contacto/${_id}`)
+  getContactos() {
+    return this.http.get(`${URL}/contacto`)
+  }
+  getContactosTotal() {
+    return this.http.get(`${URL}/contacto`)
+      .subscribe((resp: IRespuestaMensaje) => {
+        if (resp.ok) {
+          this.totalRegistros = resp.totalRegistros
+        }
+      })
+  }
+
+  deleteMensaje(_id: IMensaje) {
+    return this.http.delete(`${URL}/contacto/${_id}`)
+  }
+  setTotalMensajes(registros: number) {
+    this.totalRegistros = registros
+    // this.getTotalMensajes()
+  }
+
+  getTotalMensajes() {
+    return this.totalRegistros
+  }
+
+  crearMensaje(email: string, mensaje: string) {
+    const body = { email, mensaje }
+    const URL_MENSAJE = '/mensajes'
+    const URL_INICIO = '/inicio'
+    return this.http.post(`${URL}/contacto`, body).subscribe(() => {
+      let newUrl = this.router.routerState.snapshot.url;
+      const actualURL = newUrl === URL_MENSAJE ? URL_INICIO : URL_MENSAJE;
+      this.router.navigateByUrl(actualURL, { skipLocationChange: true })
+      .then(() => {
+        newUrl = newUrl.replace('/', '')
+        this.router.navigate([newUrl])
+      })
+      // if (newUrl === URL_MENSAJE) {
+        // this.router.navigateByUrl(actualURL, { skipLocationChange: true })
+        // .then(() => {
+        //   newUrl = newUrl.replace('/', '')
+        //   this.router.navigate([newUrl])
+        // })
+      // } else {
+      //   this.router.navigateByUrl(URL_MENSAJE, { skipLocationChange: true })
+      //     .then(() => {
+      //       this.getContactosTotal()
+      //       newUrl = newUrl.replace('/', '')
+      //       this.router.navigate([newUrl])
+      //     })
+      // }
+
+    })
   }
 }

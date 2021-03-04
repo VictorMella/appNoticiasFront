@@ -13,22 +13,24 @@ import { IRespuestaMensaje } from '../interfaces/i-respuesta-mensajes'
 })
 export class MensajesComponent implements OnInit {
   mensajesEmail: IMensaje[] = []
-  verMensajes = false;
-
+  totalMenajes: number;
 
 
   constructor(private mensajeService: MensajesService,
               private router: Router,) { }
 
   ngOnInit(): void {
-    this.getMensajes()
+    this.getMensajes();
+    window.scrollTo(0, 0);
   }
 
   getMensajes() {
-    this.mensajeService.getTecnologia()
+    this.mensajeService.getContactos()
       .subscribe((resp: IRespuestaMensaje) => {
         if (resp.ok) {
-          this.mensajesEmail = resp.mensajes
+          this.mensajesEmail = resp.mensajes;
+          this.totalMenajes = resp.totalRegistros;
+          this.mensajeService.setTotalMensajes(this.totalMenajes)
           if (this.mensajesEmail.length === 0) {
             const Toast = Swal.mixin({
               toast: true,
@@ -50,6 +52,7 @@ export class MensajesComponent implements OnInit {
       })
   }
 
+  // tslint:disable-next-line: variable-name
   deleteMensaje(_id: IMensaje) {
     this.mensajeService.deleteMensaje(_id)
       .subscribe((resp: any) => {
