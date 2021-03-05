@@ -1,1 +1,29 @@
-<p>ajustes works!</p>
+<div class="container">
+  <h3 class="text-uppercase font-weight-bold mt-5 text-center">
+    <span class="badge badge-warning">Settings</span>
+  </h3>
+
+  <!-- Actualizar Imagenes Yo -->
+  <div class="container text-left">
+    <div class="container mb-3">
+      <h4>
+        <span class="badge badge-warning">
+          <i class="fas fa-camera">&nbsp;
+            ACTUALIZAR IMAGENES YO
+          </i>
+        </span>
+      </h4>
+    </div>
+    <div class="container backPaginaNoticias34 text-center">
+      <div class="colorImgYoAjustes46">
+        <div class="row text-center">
+          <div class="col">
+            <img (click)="editarImagen(img)"
+            *ngFor="let img of imagenesYo.imagenes" [src]="img.img"
+              class="img-fluid tamanoMiniYo45 cursor7 ml-4 mr-4 mb-1 mt-1" data-toggle="tooltip" data-placement="top"
+              title="Click para EDITAR">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(public modalService: ModalService,
               public mensajeService: MensajesService,
-              private usuarioService: UsuarioService) {
+              public usuarioService: UsuarioService) {
     this.modalService.ojo2 = true;
   }
 

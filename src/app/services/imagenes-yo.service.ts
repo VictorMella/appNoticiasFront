@@ -13,4 +13,19 @@ export class ImagenesYoService {
   v4 = `${URL}/uploadYo/victorMella/v4.jpeg/victorMella`;
 
   constructor() { }
+
+  imagenes = [
+    {
+      img: this.v1
+    },
+    {
+      img: this.v3
+    },
+    {
+      img: this.v2
+    },
+    {
+      img: this.v4
+    },
+  ]
 }

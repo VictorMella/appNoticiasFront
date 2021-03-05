@@ -50,26 +50,21 @@ export class MensajesService {
     const URL_INICIO = '/inicio'
     return this.http.post(`${URL}/contacto`, body).subscribe(() => {
       let newUrl = this.router.routerState.snapshot.url;
-      const actualURL = newUrl === URL_MENSAJE ? URL_INICIO : URL_MENSAJE;
-      this.router.navigateByUrl(actualURL, { skipLocationChange: true })
-      .then(() => {
-        newUrl = newUrl.replace('/', '')
-        this.router.navigate([newUrl])
-      })
-      // if (newUrl === URL_MENSAJE) {
-        // this.router.navigateByUrl(actualURL, { skipLocationChange: true })
-        // .then(() => {
-        //   newUrl = newUrl.replace('/', '')
-        //   this.router.navigate([newUrl])
-        // })
-      // } else {
-      //   this.router.navigateByUrl(URL_MENSAJE, { skipLocationChange: true })
-      //     .then(() => {
-      //       this.getContactosTotal()
-      //       newUrl = newUrl.replace('/', '')
-      //       this.router.navigate([newUrl])
-      //     })
-      // }
+
+      if (newUrl === URL_MENSAJE) {
+        this.router.navigateByUrl(URL_INICIO, { skipLocationChange: true })
+        .then(() => {
+          newUrl = newUrl.replace('/', '')
+          this.router.navigate([newUrl])
+        })
+      } else {
+        this.router.navigateByUrl(URL_MENSAJE, { skipLocationChange: true })
+          .then(() => {
+            this.getContactosTotal()
+            newUrl = newUrl.replace('/', '')
+            this.router.navigate([newUrl])
+          })
+      }
 
     })
   }
