@@ -30,13 +30,14 @@
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/noticiaCompleta']">Noticia completa
             </a>
           </li> -->
-          <li *ngIf="usuarioService.autentificado" class="nav-item mr-1 ml-1" routerLinkActive="active">
+          <!-- *ngIf="usuarioService.autentificado" -->
+          <li  class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/mensajes']">Mensajes
             <span class="ml-2">
               {{mensajeService.getTotalMensajes()}}
             </span> </a>
           </li>
-          <li *ngIf="usuarioService.autentificado" class="nav-item mr-1 ml-1" routerLinkActive="active">
+          <li class="nav-item mr-1 ml-1" routerLinkActive="active">
             <a (click)="cerrarNav()" class="nav-link colorName3" [routerLink]="['/ajustes']">Ajustes   <i class="fas fa-user-cog"></i> </a>
           </li>
         </ul>

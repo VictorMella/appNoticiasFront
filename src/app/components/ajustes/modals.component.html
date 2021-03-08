@@ -1,0 +1,41 @@
+<!-- ******************
+*** Modal Imagen Yo ***
+******************* -->
+<div class="modal fade mt-5 py-5" id="imagen" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content colorModal11 text-center">
+      <h3 class="mb-4">
+        <img [src]="imagenesYoService.imagenPath"
+        onerror="this.src='assets/img/default-user.png'"
+        class="img-fluid tamanoMiniYo45 ml-3">
+        <span class="badge badge-warning ml-3"> <small>{{imagenesYoService.imagenNombre}}</small> </span>
+        <button type="button" (click)="limpiarImagen()" class="close text-right colorName3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h3>
+      <div class="container backModal12">
+        <div class="modal-body text-center colorTexto10">
+          <div class="form-group">
+            <input (change)="seleccionImagen($event.target.files[0])" #imagen type="file" class="form-control-file d-none" />
+            <button *ngIf="!imagenesYoService.verNombre"
+            type="button" (click)="imagen.click()"
+              class="btn btn-outline-warning btn-lg mt-3">
+              <i class="fas fa-upload mr-2"></i>
+              <span class="badge badge-warning mb-1">Seleccionar archivo</span>
+            </button>
+            <img [src]="imagenesYoService.imagenSeleccionada"
+            (click)="imagen.click()"
+              class="img-fluid tamanoMiniYo45">
+          </div>
+          <span *ngIf="imagenesYoService.verNombre"
+            class="badge badge-warning">{{imagenesYoService.imagenUpload.name}}</span>
+        </div>
+      </div>
+      <div class="container">
+        <button type="button" *ngIf="imagenesYoService.verNombre" (click)="actualizarImagen()"
+          class="btn btn-warning btn-block rounded-0 py-2 mt-4">Actualizar Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   login1: boolean;
   input1: boolean;
   pass = '60356c4017aa164c0c6a8b44';
+  pass2 = '604633cb887f0a332ca34324'
   totalMenajes: number;
 
   constructor(public modalService: ModalService,

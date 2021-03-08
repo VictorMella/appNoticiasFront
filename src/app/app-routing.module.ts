@@ -29,16 +29,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/mensajes/mensajes.module').then(
         m => m.MensajesModule
-      ),
-      canActivate: [LoginGuard]
+      )
+      // , canActivate: [LoginGuard]
   },
   {
     path: 'ajustes',
     loadChildren: () =>
       import('./components/ajustes/ajustes.module').then(
         m => m.AjustesModule
-      ),
-      canActivate: [LoginGuard]
+      )
+      // , canActivate: [LoginGuard]
   },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
