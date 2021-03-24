@@ -1,3 +1,4 @@
 export interface IFoto{
-  img: string
+  img: string;
+  nombre?: string;
 }

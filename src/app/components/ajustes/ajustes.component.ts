@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { ImagenesYoService } from 'src/app/services/imagenes-yo.service'
+import { MainFactoryService } from 'src/app/services/main-factory.service'
+import { environment } from 'src/environments/environment'
 import { IFoto } from '../interfaces/i-fotos'
 declare let $: any
+
+const URL = environment.url
 @Component({
   selector: 'app-ajustes',
   templateUrl: './ajustes.component.html',
@@ -9,16 +13,77 @@ declare let $: any
   ]
 })
 export class AjustesComponent implements OnInit {
-
+  loader = true
   fotosSeleccionada: IFoto
+  imagenes = []
+  imagenesUP = []
+  cargaInicial = true
 
-  constructor(public imagenesYo: ImagenesYoService) { }
+  constructor(public imagenesYo: ImagenesYoService,
+    public mainFactory: MainFactoryService,
+    private cdRef: ChangeDetectorRef) {
+
+  }
 
   ngOnInit(): void {
 
     $(() => {
       $('[data-toggle="tooltip"]').tooltip()
     })
+
+    this.mainFactory.loadingGlobalData$
+      .subscribe((active) => {
+        if (active) {
+          this.getImagenes()
+        } else {
+          this.getImagenes()
+        }
+      })
+
+    this.mainFactory.loadingReloadData$
+      .subscribe((active) => {
+        if (active) {
+          this.imagenes = this.imagenes.map(item => {
+            item.nombre = null
+            item.img = null
+            return item
+          })
+        }
+      })
+
+  }
+
+  getImagenes() {
+    // this.imagenes = []
+    this.imagenesYo.getImagenesService()
+      .subscribe((resp: any) => {
+        this.imagenesYo.isLoader = false
+        resp.imagenes = resp.imagenes.map(item => {
+          item.nombre = `${URL}/uploadYo/victorMella/${item.img}/victorMella`
+          return item
+        })
+        this.cdRef.detectChanges();
+        setTimeout(() => {
+          this.imagenes = [...resp.imagenes];
+        }, 1000);
+        this.cargaInicial = true
+      })
+
+  }
+
+  getImagenesUpdate() {
+    this.imagenesUP = []
+    this.imagenes = []
+    this.imagenesYo.getImagenesService()
+      .subscribe((resp: any) => {
+        resp.data = resp.imagenes.map(item => {
+          item.nombre = `${URL}/uploadYo/victorMella/${item.img}/victorMella`
+          return item
+        })
+        this.imagenesUP = [...resp.data]
+        this.cargaInicial = false
+        this.imagenesYo.isLoader = false
+      })
   }
 
   private ocultarTooltip() {
@@ -28,32 +93,31 @@ export class AjustesComponent implements OnInit {
   }
 
   editarImagen(img: IFoto) {
-    this.fotosSeleccionada = img;
-    if (this.fotosSeleccionada.img === this.imagenesYo.v1) {
+    this.fotosSeleccionada = img
+    if (this.fotosSeleccionada.nombre === this.imagenesYo.v1) {
       this.imagenesYo.imagenNombre = 'v1.jpeg'
-      this.imagenesYo.imagenPath = this.fotosSeleccionada.img;
+      this.imagenesYo.imagenPath = this.fotosSeleccionada.nombre
       $('#imagen').modal()
       this.ocultarTooltip()
     }
-    if (this.fotosSeleccionada.img === this.imagenesYo.v2) {
+    if (this.fotosSeleccionada.nombre === this.imagenesYo.v2) {
       this.imagenesYo.imagenNombre = 'v2.jpeg'
-      this.imagenesYo.imagenPath = this.fotosSeleccionada.img;
+      this.imagenesYo.imagenPath = this.fotosSeleccionada.nombre
       $('#imagen').modal()
       this.ocultarTooltip()
     }
-    if (this.fotosSeleccionada.img === this.imagenesYo.v3) {
+    if (this.fotosSeleccionada.nombre === this.imagenesYo.v3) {
       this.imagenesYo.imagenNombre = 'v3.jpeg'
-      this.imagenesYo.imagenPath = this.fotosSeleccionada.img;
+      this.imagenesYo.imagenPath = this.fotosSeleccionada.nombre
       $('#imagen').modal()
       this.ocultarTooltip()
     }
-    if (this.fotosSeleccionada.img === this.imagenesYo.v4) {
+    if (this.fotosSeleccionada.nombre === this.imagenesYo.v4) {
       this.imagenesYo.imagenNombre = 'v4.jpeg'
-      this.imagenesYo.imagenPath = this.fotosSeleccionada.img;
+      this.imagenesYo.imagenPath = this.fotosSeleccionada.nombre
       $('#imagen').modal()
       this.ocultarTooltip()
     }
-
   }
 
 }

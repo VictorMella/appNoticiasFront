@@ -14,18 +14,32 @@
         </span>
       </h4>
     </div>
-    <div class="container backPaginaNoticias34 text-center">
+    <div class="container backPaginaNoticias34 text-center" >
       <div class="colorImgYoAjustes46">
         <div class="row text-center">
-          <div class="col">
+          <div class="col" *ngIf="!imagenesYo.isLoader">
             <img (click)="editarImagen(img)"
-            *ngFor="let img of imagenesYo.imagenes" [src]="img.img"
+            *ngFor="let img of imagenes" src="{{img.nombre}}" [useCache]="false"
               class="img-fluid tamanoMiniYo45 cursor7 ml-4 mr-4 mb-1 mt-1" data-toggle="tooltip" data-placement="top"
               title="Click para EDITAR">
           </div>
+          <app-loader style="flex: auto;" *ngIf="imagenesYo.isLoader"></app-loader>
         </div>
       </div>
     </div>
+    <!-- <div class="container backPaginaNoticias34 text-center" *ngIf="!cargaInicial">
+      <div class="colorImgYoAjustes46">
+        <div class="row text-center">
+          <div class="col" *ngIf="!imagenesYo.isLoader">
+            <img (click)="editarImagen(img)"
+            *ngFor="let img of imagenesUP" [src]="img.nombre"
+              class="img-fluid tamanoMiniYo45 cursor7 ml-4 mr-4 mb-1 mt-1" data-toggle="tooltip" data-placement="top"
+              title="Click para EDITAR">
+          </div>
+          <app-loader style="flex: auto;" *ngIf="imagenesYo.isLoader"></app-loader>
+        </div>
+      </div>
+    </div> -->
   </div>
 
   <app-modals></app-modals>
