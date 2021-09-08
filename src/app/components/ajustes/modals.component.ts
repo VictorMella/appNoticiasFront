@@ -59,7 +59,7 @@ export class ModalsComponent implements OnInit {
       return this.http.post(`${URL}/uploadYo/update`, formData, { headers })
         .subscribe({
           next: (resp: any) => {
-            this.mainFactory.activeLoadingReloadData(true)
+            this.mainFactory.activeLoadingGlobalData(true)
             setTimeout(() => {
               $('#imagen').modal('hide')
             }, 100)
@@ -77,7 +77,7 @@ export class ModalsComponent implements OnInit {
               title: resp.mensaje,
               background: 'rgb(233,233,0)'
             })
-            .then(() =>  this.mainFactory.activeLoadingGlobalData(true))
+            .then(() =>  this.mainFactory.activeLoadingReloadData(true))
             this.limpiarImagen()
           },
           error: (err: any) => console.log(err),

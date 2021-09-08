@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { ImagenesYoService } from 'src/app/services/imagenes-yo.service'
 import { MainFactoryService } from 'src/app/services/main-factory.service'
 import { environment } from 'src/environments/environment'
@@ -21,6 +22,7 @@ export class AjustesComponent implements OnInit {
 
   constructor(public imagenesYo: ImagenesYoService,
     public mainFactory: MainFactoryService,
+    private router: Router,
     private cdRef: ChangeDetectorRef) {
 
   }
@@ -31,10 +33,18 @@ export class AjustesComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip()
     })
 
+    setTimeout(() => {
+      $(() => {
+        $('[data-toggle="tooltip"]').tooltip({
+          trigger: 'hover'
+        });
+      });
+    }, 150);
+
     this.mainFactory.loadingGlobalData$
       .subscribe((active) => {
         if (active) {
-          this.getImagenes()
+          this.imagenesYo.isLoader = true
         } else {
           this.getImagenes()
         }
@@ -48,9 +58,23 @@ export class AjustesComponent implements OnInit {
             item.img = null
             return item
           })
+          this.reloadCurrentRoute()
         }
       })
-
+  }
+  // reload () { this.ngOnInit(); }
+  reloadCurrentRoute() {
+    // const newUrl = this.router.routerState.snapshot.url;
+    // this.router.navigateByUrl('/inicio', {skipLocationChange: true})
+    // .then(() => {
+    //     this.router.navigate([newUrl]);
+    //     console.log(newUrl);
+    //     this.mainFactory.activeLoadingReloadData(false)
+    //     this.mainFactory.activeLoadingGlobalData(false)
+    // });
+        this.mainFactory.activeLoadingReloadData(false)
+        this.mainFactory.activeLoadingGlobalData(false)
+    this.ngOnInit();
   }
 
   getImagenes() {
